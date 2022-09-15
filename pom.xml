@@ -20,7 +20,7 @@
 
   <groupId>com.qubole.spark</groupId>
   <artifactId>spark-sql-kinesis_2.12</artifactId>
-  <version>1.2.1_spark-3.0-SNAPSHOT</version>
+  <version>1.2.1_spark-3.3.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Kinesis Integration for Structured Streaming</name>
   <description>Connector to read from and write into Kinesis from Structured Streaming Applications</description>
@@ -61,7 +61,7 @@
 
   <properties>
     <sbt.project.name>sql-kinesis</sbt.project.name>
-    <spark.version>3.0.1</spark.version>
+    <spark.version>3.3.0</spark.version>
     <scala.binary.version>2.12</scala.binary.version>
     <fasterxml.jackson.version>2.10.0</fasterxml.jackson.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -99,37 +99,32 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>amazon-kinesis-client</artifactId>
-      <version>1.9.0</version>
+      <version>1.14.8</version>
     </dependency>
     <dependency>
     <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-core</artifactId>
-      <version>1.11.655</version>
+      <version>1.12.300</version>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-sts</artifactId>
-      <version>1.11.271</version>
+      <version>1.12.300</version>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>amazon-kinesis-producer</artifactId>
-      <version>0.12.8</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java</artifactId>
-      <version>2.6.1</version>
-      <!--
-         We are being explicit about version here and overriding the
-         spark default of 2.5.0 because KCL appears to have introduced
-         a dependency on protobuf 2.6.1 somewhere between KCL 1.4.0 and 1.6.1.
-       -->
+      <version>0.14.13</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-cbor</artifactId>
       <version>${fasterxml.jackson.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.12.3</version>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
@@ -146,7 +141,7 @@
     <dependency>
       <groupId>org.scalatest</groupId>
       <artifactId>scalatest_${scala.binary.version}</artifactId>
-      <version>3.0.8</version>
+      <version>3.2.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>

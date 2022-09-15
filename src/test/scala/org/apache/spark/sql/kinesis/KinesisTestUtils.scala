@@ -34,6 +34,7 @@ import com.amazonaws.services.kinesis.{AmazonKinesis, AmazonKinesisClient}
 import com.amazonaws.services.kinesis.model._
 import com.amazonaws.services.kinesis.producer.{KinesisProducer => KPLProducer, KinesisProducerConfiguration, UserRecordResult}
 import com.google.common.util.concurrent.{FutureCallback, Futures}
+import com.google.common.util.concurrent.MoreExecutors.directExecutor
 
 import org.apache.spark.internal.Logging
 
@@ -366,7 +367,7 @@ private[kinesis] class KPLDataGenerator(regionName: String) extends KinesisDataG
           sentSeqNumbers += ((num, seqNumber))
         }
       }
-      Futures.addCallback(future, kinesisCallBack)
+      Futures.addCallback(future, kinesisCallBack, directExecutor())
     }
     producer.flushSync()
     shardIdToSeqNumbers.toMap
